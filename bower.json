@@ -3,11 +3,12 @@
   "version": "2.0.1",
   "homepage": "https://wincinderith.github.io/iron-cookie",
   "authors": [
-    "Kevin Boxhoorn <kevinboxhoorn@yahoo.com>"
+    "Kevin Boxhoorn <kevinboxhoorn@yahoo.com>",
+    "lordoftheflies <laszlo.hegedus@cherubits.hu>"
   ],
   "description": "Polymer element for managing cookies.",
   "main": "iron-cookie.html",
-  "license": "GPLv3",
+  "license": "Apache-2.0",
   "ignore": [
     "**/.*",
     "node_modules",
