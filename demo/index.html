@@ -19,34 +19,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-	<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-	<link rel="import" href="../iron-cookie.html">
-	<style>
-		body {
-			max-width: 48em;
-			padding: 20px;
-			margin: 0 auto;
-		}
-	</style>
+    <title>iron-cookie demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../iron-cookie.html">
+    <style>
+        body {
+            max-width: 48em;
+            padding: 20px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
-<body>
-	<dom-bind>
-		<template>
-			<iron-cookie name="demo" value="{{value}}" uri-safe></iron-cookie>
+<body unresolved>
+<div class="vertical-section-container centered">
+    <h3><code>iron-form</code> works with native and custom elements, and can prevent automatic redirection</h3>
+    <demo-snippet>
+        <template>
+            <iron-cookie id="cookie" name="demo" value="{{value}}" uri-safe></iron-cookie>
 
-			<p>
-				<b>Enter a value to store in a cookie:</b>
-				<input value="{{value::input}}">
-			</p>
+            <p>
+                <b>Enter a value to store in a cookie:</b>
+                <input value="[[value]]">
+            </p>
 
-			<p><b>Current cookie value:</b> {{value}}</p>
+            <p><b>Current cookie value:</b> <span id="cookie">[[value]]</span></p>
 
-			<p>Reload the page and the value will be saved!</p>
-		</template>
-	</dom-bind>
+            <p>Reload the page and the value will be saved!</p>
+
+        </template>
+    </demo-snippet>
+</div>
 </body>
 </html>
