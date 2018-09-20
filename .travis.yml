@@ -4,7 +4,6 @@ dist: trusty
 sudo: required
 addons:
   firefox: latest
-before_script:
-- npm install -g bower web-component-tester
-- bower install
-script: xvfb-run wct
+before_script: npm install -g web-component-tester
+script: xvfb-run wct --module-resolution=node --npm
+

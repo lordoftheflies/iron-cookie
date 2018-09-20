@@ -22,9 +22,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-	<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="../../web-component-tester/browser.js"></script>
-	<link rel="import" href="../iron-cookie.html">
+	<script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+	<script src="../../../wct-browser-legacy/browser.js"></script>
+	<script type="module" src="../iron-cookie.js"></script>
 </head>
 <body>
 	<test-fixture id="iron-cookie">
@@ -33,47 +33,48 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</template>
 	</test-fixture>
 
-	<script>
-		suite("core tests", () => {
-			let ironCookie;
-			setup(() => {
+	<script type="module">
+import '../iron-cookie.js';
+suite("core tests", () => {
+    let ironCookie;
+    setup(() => {
 				ironCookie = fixture("iron-cookie");
-			});
+    });
 
-			test("sets a cookie", () => {
+    test("sets a cookie", () => {
 				ironCookie.name = "test-1";
 				ironCookie.value = "test-1-value";
 				expect(document.cookie.indexOf("test-1=test-1-value")).to.be.at.least(0);
-			});
+    });
 
-			test("gets a cookie", () => {
+    test("gets a cookie", () => {
 				document.cookie = "test-2=test-2-value";
 				ironCookie.name = "test-2";
 				expect(ironCookie.value).to.equal("test-2-value");
-			});
+    });
 
-			test("notifies the value when the cookie name changes", (done) => {
+    test("notifies the value when the cookie name changes", (done) => {
 				document.cookie = "test-3-1=test-3-1-value";
 				document.cookie = "test-3-2=test-3-2-value";
 				ironCookie.name = "test-3-1";
 				expect(ironCookie.value).to.equal("test-3-1-value");
 				ironCookie.addEventListener("value-changed", () => {
-					expect(ironCookie.value).to.equal("test-3-2-value");
-					done();
+            expect(ironCookie.value).to.equal("test-3-2-value");
+            done();
 				});
 				ironCookie.name = "test-3-2";
-			});
+    });
 
-			test("manually gets cookies", () => {
+    test("manually gets cookies", () => {
 				document.cookie = "test-4=test-4-value";
 				ironCookie.manualGet = true;
 				ironCookie.name = "test-4";
 				expect(ironCookie.value).to.equal("");
 				ironCookie.getCookie();
 				expect(ironCookie.value).to.equal("test-4-value");
-			});
+    });
 
-			test("manually sets cookies", () => {
+    test("manually sets cookies", () => {
 				document.cookie = "test-5=test-5-1-value";
 				ironCookie.manualSet = true;
 				ironCookie.name = "test-5";
@@ -81,27 +82,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				expect(document.cookie.indexOf("test-5=test-5-2-value")).to.equal(-1);
 				ironCookie.setCookie();
 				expect(document.cookie.indexOf("test-5=test-5-2-value")).to.be.at.least(0);
-			});
+    });
 
-			test("encodes URI patterns", () => {
+    test("encodes URI patterns", () => {
 				ironCookie.uriSafe = true;
 				ironCookie.name = "test-6";
 				ironCookie.value = ";=";
 				expect(document.cookie.indexOf("test-6=%3B%3D")).to.be.at.least(0);
-			});
+    });
 
-			test("decodes URI patterns", () => {
+    test("decodes URI patterns", () => {
 				document.cookie = "test-7=%3B%3D"
 				ironCookie.uriSafe = true;
 				ironCookie.name = "test-7";
 				expect(ironCookie.value).to.equal(";=");
-			});
+    });
 
-			test("throws error when trying to set value that contains illegal characters and URI patterns are disabled", () => {
+    test("throws error when trying to set value that contains illegal characters and URI patterns are disabled", () => {
 				ironCookie.name = "test-8";
 				expect(() => ironCookie.value = ";=").to.throw("`value` cannot contain ';' or '=' characters when `uriSafe` is not true");
-			});
-		});
-	</script>
+    });
+});
+</script>
 </body>
 </html>
