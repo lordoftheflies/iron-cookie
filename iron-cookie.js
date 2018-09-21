@@ -19,9 +19,9 @@ import { Element } from '@polymer/polymer/polymer-element.js';
 
 const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<dom-module id="plutonium-pagination">
+$_documentContainer.innerHTML = `<dom-module id="iron-cookie">
     <template>
-        <style include="shared-styles">
+        <style>
             :host {
                 display: none;
             }
