@@ -31,7 +31,7 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
  * @demo demo/index.html
  *
  */
-class IronCookieElement extends Element {
+class IronCookieElement extends PolymerElement {
     static get is() {
         return "iron-cookie";
     }
